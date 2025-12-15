@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipulate — Naming the Hidden Cost of Giving with Strings Attached</title>
+    <meta name="description" content="Recipulate: when gifts come with unspoken obligations. Learn to recognize reciprocity manipulation and restore consent in your relationships.">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,600;1,9..144,400&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --color-bg: #faf9f7;
+            --color-text: #2d2a26;
+            --color-text-muted: #6b6560;
+            --color-accent: #8b4513;
+            --color-accent-light: #d4a574;
+            --color-border: #e8e4df;
+            --color-card: #ffffff;
+            --font-display: 'Fraunces', Georgia, serif;
+            --font-body: 'Source Sans 3', -apple-system, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.7;
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            margin-bottom: 1em;
+            color: var(--color-accent);
+        }
+
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75em;
+            margin-top: 2em;
+        }
+
+        p {
+            margin-bottom: 1.25em;
+        }
+
+        strong {
+            font-weight: 600;
+        }
+
+        em {
+            font-family: var(--font-display);
+            font-style: italic;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            padding: 120px 0 80px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 80px;
+            background: linear-gradient(to bottom, var(--color-border), transparent);
+        }
+
+        .hero-label {
+            font-size: 0.875rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 0.4em;
+            font-family: var(--font-body);
+            font-weight: 400;
+            color: var(--color-text-muted);
+            margin-top: 0.5em;
+            letter-spacing: 0;
+        }
+
+        .hero-intro {
+            font-size: 1.25rem;
+            color: var(--color-text-muted);
+            max-width: 540px;
+            margin-top: 2rem;
+        }
+
+        /* Definition cards */
+        .definition {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            margin: 32px 0;
+        }
+
+        .definition-term {
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 0.5em;
+        }
+
+        .definition-type {
+            font-size: 0.875rem;
+            color: var(--color-text-muted);
+            font-style: italic;
+            margin-left: 0.5em;
+            font-weight: 400;
+        }
+
+        .definition p {
+            margin-bottom: 0;
+        }
+
+        /* Divider */
+        .divider {
+            width: 48px;
+            height: 1px;
+            background: var(--color-accent-light);
+            margin: 0 auto;
+        }
+
+        /* Examples */
+        .example-grid {
+            display: grid;
+            gap: 24px;
+            margin: 32px 0;
+        }
+
+        .example {
+            padding-left: 20px;
+            border-left: 2px solid var(--color-border);
+        }
+
+        .example-label {
+            font-size: 0.8125rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-accent);
+            margin-bottom: 0.5em;
+        }
+
+        .example p {
+            margin-bottom: 0;
+            color: var(--color-text-muted);
+        }
+
+        /* Guidance sections */
+        .guidance {
+            margin: 40px 0;
+        }
+
+        .guidance h3 {
+            color: var(--color-accent);
+            font-size: 1.125rem;
+            margin-top: 0;
+        }
+
+        .guidance-content {
+            padding-left: 20px;
+            border-left: 2px solid var(--color-border);
+        }
+
+        /* Blockquote for key phrases */
+        .pull-quote {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-style: italic;
+            color: var(--color-accent);
+            margin: 48px 0;
+            padding: 0 24px;
+            text-align: center;
+        }
+
+        /* Resources */
+        .resources {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            padding: 32px;
+            margin-top: 32px;
+        }
+
+        .resources h3 {
+            margin-top: 0;
+            font-size: 1rem;
+        }
+
+        .resources ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .resources li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .resources li:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .resources a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .resources a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 0;
+            text-align: center;
+            color: var(--color-text-muted);
+            font-size: 0.875rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        footer p {
+            margin-bottom: 0.5em;
+        }
+
+        /* Nav dots */
+        .nav-dots {
+            position: fixed;
+            right: 24px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--color-border);
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .nav-dot:hover,
+        .nav-dot.active {
+            background: var(--color-accent);
+            transform: scale(1.25);
+        }
+
+        @media (max-width: 768px) {
+            .nav-dots {
+                display: none;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 80px 0 60px;
+            }
+
+            .definition {
+                padding: 24px;
+            }
+        }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-in {
+                opacity: 0;
+                transform: translateY(20px);
+                animation: fadeIn 0.6s ease forwards;
+            }
+
+            @keyframes fadeIn {
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .hero h1 { animation-delay: 0.1s; }
+            .hero-intro { animation-delay: 0.2s; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-dots" aria-label="Section navigation">
+        <button class="nav-dot active" data-section="hero" aria-label="Introduction"></button>
+        <button class="nav-dot" data-section="definition" aria-label="Definition"></button>
+        <button class="nav-dot" data-section="why" aria-label="Why it matters"></button>
+        <button class="nav-dot" data-section="examples" aria-label="Examples"></button>
+        <button class="nav-dot" data-section="guidance" aria-label="How to respond"></button>
+        <button class="nav-dot" data-section="resources" aria-label="Resources"></button>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="container">
+            <p class="hero-label fade-in">A term for what you've always felt</p>
+            <h1 class="fade-in">
+                Recipulate
+                <span>re·cip·u·late /rɪˈsɪpjʊleɪt/</span>
+            </h1>
+            <p class="hero-intro fade-in">
+                When gifts come with strings you never agreed to hold. When favors create debts you never chose to owe. There's finally a word for it.
+            </p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <section id="definition">
+        <div class="container">
+            <h2>What Is Recipulation?</h2>
+            
+            <div class="definition">
+                <p class="definition-term">Recipulate <span class="definition-type">verb</span></p>
+                <p>To give gifts, favors, or acts of service while holding unspoken expectations of return—expectations the recipient never agreed to and may not even know exist.</p>
+            </div>
+
+            <div class="definition">
+                <p class="definition-term">Recipulator <span class="definition-type">noun</span></p>
+                <p>Someone who gives with hidden conditions. They may not realize they're doing it, but the effect is the same: the recipient is placed in a debt they never chose.</p>
+            </div>
+
+            <div class="definition">
+                <p class="definition-term">Recipulation <span class="definition-type">noun</span></p>
+                <p>A "gift" that isn't free—it comes with unspoken terms and emotional strings attached.</p>
+            </div>
+
+            <h3>The Core Issue: Consent</h3>
+            <p>
+                The recipient never chose to accept these conditions because they weren't aware of them. The recipulator removes the recipient's ability to consent, creating resentment, guilt, and confusion—often without either person understanding why.
+            </p>
+        </div>
+    </section>
+
+    <section id="why">
+        <div class="container">
+            <h2>Why This Matters</h2>
+            
+            <p>
+                Recipulation manipulates feelings and actions. People may behave in ways they wouldn't have if the expectations had been stated openly. Over time, these hidden demands erode trust. The recipient senses something is wrong but can't identify it. Relationships fracture in ways neither person fully understands.
+            </p>
+
+            <p class="pull-quote">
+                "Recipulators often don't recognize their own behavior. They genuinely want to help—but also expect something in return they've never named."
+            </p>
+
+            <p>
+                Self-awareness is the first step. Recognizing the pattern in yourself or others makes it possible to change.
+            </p>
+        </div>
+    </section>
+
+    <section id="examples">
+        <div class="container">
+            <h2>Examples</h2>
+
+            <h3>Family & Friends</h3>
+            <div class="example-grid">
+                <div class="example">
+                    <p class="example-label">The Generous Parent</p>
+                    <p>Expensive gifts for an adult child, with unspoken expectations of availability or obedience. When the child makes independent choices, the parent feels "betrayed"—though no agreement was ever made.</p>
+                </div>
+                <div class="example">
+                    <p class="example-label">The Paying Friend</p>
+                    <p>One friend always picks up the check, then expects unconditional loyalty on unrelated matters. The other friend never agreed to these terms.</p>
+                </div>
+            </div>
+
+            <h3>Romantic Relationships</h3>
+            <div class="example-grid">
+                <div class="example">
+                    <p class="example-label">Grand Gestures</p>
+                    <p>Lavish gifts, followed by claims of betrayal when the partner spends time with friends or pursues their own interests. The "debt" was never discussed.</p>
+                </div>
+                <div class="example">
+                    <p class="example-label">Domestic Leverage</p>
+                    <p>Constantly doing chores or errands, then using "everything I do for you" to control social decisions.</p>
+                </div>
+            </div>
+
+            <h3>Work</h3>
+            <div class="example-grid">
+                <div class="example">
+                    <p class="example-label">The Over-Helper</p>
+                    <p>A colleague takes on your tasks unprompted, then demands loyalty or unconditional help later. You never asked; now you "owe."</p>
+                </div>
+                <div class="example">
+                    <p class="example-label">Mentor Leverage</p>
+                    <p>A supervisor advocates for you, then expects silent compliance on decisions affecting your wellbeing—decisions you never agreed to.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="guidance">
+        <div class="container">
+            <h2>How to Respond</h2>
+
+            <div class="guidance">
+                <h3>If You Recognize It in Yourself</h3>
+                <div class="guidance-content">
+                    <p>
+                        Ask: <em>Am I expecting something I've never actually stated?</em> If so, pause before resentment builds. Being honest with yourself about what you want is the first step toward healthy communication.
+                    </p>
+                    <p>
+                        <strong>State expectations upfront.</strong> "I'm happy to help this weekend—would you be willing to proofread my resume next week?" Then respect a no.
+                    </p>
+                    <p>
+                        <strong>Give for the joy of giving.</strong> If they respond differently than you hoped, any unmet expectation was yours—not theirs.
+                    </p>
+                </div>
+            </div>
+
+            <div class="guidance">
+                <h3>If Someone Is Recipulating You</h3>
+                <div class="guidance-content">
+                    <p>
+                        <strong>You're not obligated to fix their error.</strong> They concealed expectations; you simply existed in a dynamic you never agreed to. That's on them.
+                    </p>
+                    <p>
+                        <strong>Ask for clarity if you want to:</strong> "I appreciate what you've done. Is there something you're hoping for in return?" This is optional—you're under no obligation if it feels unsafe.
+                    </p>
+                    <p>
+                        <strong>Reinforce your autonomy:</strong> "I'm sorry, but I never agreed to that." You're protecting your boundaries, not accepting blame.
+                    </p>
+                </div>
+            </div>
+
+            <div class="guidance">
+                <h3>A Note on Power</h3>
+                <div class="guidance-content">
+                    <p>
+                        A "yes" is only valid when someone can truly say "no." If the other person has no real alternative—like a child dependent on a parent—then asking them to "agree" to future obligations isn't an exchange. It's coercion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="resources">
+        <div class="container">
+            <h2>Further Reading</h2>
+            
+            <div class="resources">
+                <h3>Books on Boundaries</h3>
+                <ul>
+                    <li><em>Boundaries: When to Say Yes, How to Say No</em> — Henry Cloud & John Townsend</li>
+                    <li><em>Codependent No More</em> — Melody Beattie</li>
+                </ul>
+            </div>
+
+            <div class="resources">
+                <h3>Articles</h3>
+                <ul>
+                    <li><a href="https://www.psychologytoday.com/" target="_blank" rel="noopener">Psychology Today: Understanding Emotional Blackmail</a></li>
+                    <li><a href="https://www.verywellmind.com/" target="_blank" rel="noopener">Verywell Mind: Signs of Unhealthy Relationship Dynamics</a></li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 32px; color: var(--color-text-muted); font-size: 0.9375rem;">
+                <strong>On usage:</strong> "Recipulate," "Recipulator," and "Recipulation" are newly coined terms. Feel free to use them with credit or a link back here.
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p><strong>Recipulate</strong></p>
+            <p>By naming it, we can see it. By seeing it, we can change it.</p>
+            <p style="margin-top: 24px; font-size: 0.8125rem;">
+                This content is informational, not professional advice. If you're in a harmful situation, please consult a qualified therapist or counselor.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation dots
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        // Click handlers
+        navDots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                const sectionId = dot.dataset.section;
+                document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Scroll spy
+        const observerOptions = {
+            root: null,
+            rootMargin: '-50% 0px',
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navDots.forEach(dot => dot.classList.remove('active'));
+                    const activeDot = document.querySelector(`[data-section="${entry.target.id}"]`);
+                    if (activeDot) activeDot.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>
